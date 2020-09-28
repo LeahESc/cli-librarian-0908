@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
 
 require 'pry'
-require 'HTTParty'
+# require 'HTTParty'
 require 'json'
 
 require_relative '../lib/cli.rb'
 require_relative '../lib/api.rb'
 require_relative '../lib/book.rb'
 
+CLI.new.menu
