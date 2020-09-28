@@ -3,15 +3,15 @@ require 'pry'
 class CLI 
 
     def menu
-        puts "Hello, I'm Marian, the Librarian."
+        puts ""
+        puts "Hello, I'm Marian the Librarian! Welcome to my library!"
         puts ""
         puts "----------------------------------"
         # book illustration 
-        puts "What type of book are you looking for? Type the name of the author to see a list of their books. To exit, type 'Goobye Marian'." 
+        puts "To search for a list of books from an author, type the author's first and last name.To exit, type 'Goobye Marian'." 
         puts ""
-        @genre = gets.strip.downcase
-
+        @f_name = gets.strip.downcase
+        @l_name = gets.strip.downcase
+        API.get_books(@f_name, @l_name)
     end
-
-    def list_books_by_genre(genre)
 end 
