@@ -11,6 +11,8 @@ class Book
         # @l_name = l_name
         # @first_sentence = first_sentence
         # @publish_date = publish_date
+        # @@all << self
+        @@all << self
     end 
     
     def save 
@@ -21,9 +23,14 @@ class Book
     end 
 
     def self.find_by_author(f_name, l_name)
+        # binding.pry
        list = self.all.select{|b| b.f_name == f_name && b.l_name == l_name}
-        list.each.with_index(1) do |b, i|
-        puts "#{i}. #{b.title}"
+        titles = list.collect {|b| b.title.downcase}
+        # binding.pry
+        titles.uniq.each.with_index(1) do |t,i|
+            # if !b.title.downcase.eql? b.title.downcase
+            puts "#{i}. #{t.gsub(/\w+/){|word| word.capitalize}}"
+            # puts "#{i}. #{t.capitalize}"
         end
     end
 
