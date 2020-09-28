@@ -2,16 +2,19 @@ require 'pry'
 
 class CLI 
 
-    def menu
+    def run
         puts ""
         puts "Hello, I'm Marian the Librarian! Welcome to my library!"
         puts ""
         puts "----------------------------------"
         # book illustration 
-        puts "To search for a list of books from an author, type the author's first and last name.To exit, type 'Goobye Marian'." 
+        puts "To search for a list of books from an author, type the author's last name.To exit, type 'Goobye Marian'." 
         puts ""
-        @f_name = gets.strip.downcase
-        @l_name = gets.strip.downcase
+        input_arr = gets.strip.downcase.split(" ")
+        @f_name = input_arr[0]
+        @l_name = input_arr[1]
         API.get_books(@f_name, @l_name)
+        puts ""
+        Book.find_by_author(@f_name, @l_name)
     end
 end 
