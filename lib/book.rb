@@ -6,13 +6,6 @@ class Book
     def initialize(attrs) 
         # binding.pry
         attrs.each {|k, v| self.send(("#{k}="), v)}
-        @subject = [] 
-        # @title = title
-        # @f_name = f_name
-        # @l_name = l_name
-        # @first_sentence = first_sentence
-        # @publish_date = publish_date
-        # @@all << self
         @@all << self
     end 
     
@@ -25,15 +18,10 @@ class Book
 
     def self.find_by_author(f_name, l_name)
         # binding.pry
-       list = self.all.select{|b| b.f_name == f_name && b.l_name == l_name}
-        titles = list.collect {|b| b.title.downcase}
-        @titles = titles.uniq
-        # @titles = titles
-        # binding.pry
-        # titles.uniq.each.with_index(1) do |t,i|
-        #     puts "#{i}. #{t.gsub(/\w+/){|word| word.capitalize}}"
-        # end
+       self.all.select{|b| b.f_name == f_name && b.l_name == l_name}
     end
+
+
    
     
 
