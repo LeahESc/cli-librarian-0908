@@ -1,11 +1,12 @@
 require 'pry'
 class Book
-    attr_accessor :title, :l_name, :f_name, :first_sentence, :publish_date
+    attr_accessor :title, :l_name, :f_name, :first_sentence, :publish_date, :subject
     @@all = [] 
 
     def initialize(attrs) 
         # binding.pry
         attrs.each {|k, v| self.send(("#{k}="), v)}
+        @subject = [] 
         # @title = title
         # @f_name = f_name
         # @l_name = l_name
@@ -26,13 +27,16 @@ class Book
         # binding.pry
        list = self.all.select{|b| b.f_name == f_name && b.l_name == l_name}
         titles = list.collect {|b| b.title.downcase}
+        @titles = titles.uniq
+        # @titles = titles
         # binding.pry
-        titles.uniq.each.with_index(1) do |t,i|
-            # if !b.title.downcase.eql? b.title.downcase
-            puts "#{i}. #{t.gsub(/\w+/){|word| word.capitalize}}"
-            # puts "#{i}. #{t.capitalize}"
-        end
+        # titles.uniq.each.with_index(1) do |t,i|
+        #     puts "#{i}. #{t.gsub(/\w+/){|word| word.capitalize}}"
+        # end
     end
+   
+    
+
 
     # def self.find_by_title(title)
     #     title_list = self.all.select{|b| b.title == title}

@@ -16,7 +16,38 @@ class CLI
         @l_name = input_arr[1]
         API.get_books(@f_name, @l_name)
         puts ""
-        Book.find_by_author(@f_name, @l_name)
+        print_books_by_author(@f_name, @l_name)
+    
+        puts ""
+        prompt
+        # input = gets.strip 
+        # while input != "exit"
+            # if input == @f_name, @l_name
+
+            # elsif input.to_i > 0 && input.to_i <= Book.find_by_author.count
+                # book = Book.find_by_author(@f_name, @l_name)[input.to_i - 1]
+                # puts book
+            # end 
         # end
+
     end
+
+    def print_books_by_author(f_name, l_name)
+        @titles = Book.find_by_author(@f_name, @l_name)
+        #  binding.pry 
+            @titles.each.with_index(1) do |t,i|
+                puts "#{i}. #{t.gsub(/\w+/){|word| word.capitalize}}"
+            end
+        end
+
+    def prompt 
+        puts "To learn more about a particular book, please type the number listed next to the title." 
+        puts "If you'd like to search for books by a different author, please type the author's first and last name."
+        puts "To exit, type 'Goodbye Marian'"  
+        puts ""
+    end
+
+    def print_book_details(book)
+    end
+
 end 

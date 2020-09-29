@@ -5,4 +5,6 @@ CLI_ MARIAN THE LIBRARIAN
 3. Asks user for author input to find all author's books
 4. Prints a list of all author's books. 
     Book titles cannot be duplicates
-    Book titles must be in english
+    ***  can book titles only be in english?? 
+5. Asks the user to select a book title to view more info about 
+    user input must be valid: a number greater than 0 and less than the length of the title list
