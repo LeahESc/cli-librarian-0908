@@ -20,12 +20,12 @@ class CLI
                 print_titles_by_author(@f_name, @l_name)
                 puts ""
                 book_prompt
+                @book_input = gets.strip.downcase
                 book_selection
             else
                 puts "I'm sorry, I couldn't understand that. Would you like to try again?" 
                 puts ""
             end
-            puts "Would you like to search for books by a different author?"
             menu_loop
         end
     end
@@ -49,22 +49,29 @@ class CLI
     end
 
     def book_selection
-        input = gets.strip.downcase
-        if input.to_i > 0 && input.to_i <= Book.find_by_author(@f_name, @l_name).count
-            book = Book.find_by_author(@f_name, @l_name)[input.to_i - 1]
+        if @book_input.to_i > 0 && @book_input.to_i <= Book.find_by_author(@f_name, @l_name).count
+            book = Book.find_by_author(@f_name, @l_name)[@book_input.to_i - 1]
+            # binding.pry 
             print_book_details(book)
             puts ""
         else
             puts "I'm sorry, I couldn't understand that. To see the list of book titles again type 'list'. To go back to the main menu, type 'menu'."
-            list
-        end
+            list   
+        end  
     end 
 
     def list 
-        input = gets.strip.downcase.split(" ")
-        binding.pry
+        input = gets.strip.downcase
         if input == "list"
             print_titles_by_author(@f_name, @l_name)
+            puts ""
+            book_prompt
+            puts "If you'd like to go back to the main menu, type 'menu'"
+            @book_input = gets.strip.downcase
+            # binding.pry
+            while @book_input != "menu"
+                book_selection
+            end
         end
     end
 
