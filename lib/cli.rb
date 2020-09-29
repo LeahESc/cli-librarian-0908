@@ -20,16 +20,24 @@ class CLI
     
         puts ""
         prompt
-        # input = gets.strip 
-        # while input != "exit"
-            # if input == @f_name, @l_name
+        input = gets.strip 
+        if input.to_i > 0 && input.to_i <= Book.find_by_author.count
+                book = Book.find_by_author(@f_name, @l_name)[input.to_i - 1]
+                API.get_book(book)
+                print_book_details(book)
+        binding.pry
+        while input != "exit"
+            if input == @f_name || @l_name
 
-            # elsif input.to_i > 0 && input.to_i <= Book.find_by_author.count
-                # book = Book.find_by_author(@f_name, @l_name)[input.to_i - 1]
-                # puts book
-            # end 
-        # end
-
+            elsif input.to_i > 0 && input.to_i <= Book.find_by_author.count
+                book = Book.find_by_author(@f_name, @l_name)[input.to_i - 1]
+                API.get_book(book)
+                print_book_details(book)
+            else
+                puts "I'm sorry, I couldn't understand that. Would you like to try again? Try typing the number of one of the books listed to see more information."
+                puts "Or, if you'd like to exit, type 'Goodbye Marian'"
+            end
+         end  
     end
 
     def print_books_by_author(f_name, l_name)
@@ -48,6 +56,10 @@ class CLI
     end
 
     def print_book_details(book)
+        puts "#{book.title}"
+        puts "#{book.first_year_published}"
+        puts "#{book.first_sentence}"
+        puts "#{book.subject}"
     end
 
 end 

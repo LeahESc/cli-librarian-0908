@@ -8,3 +8,7 @@ CLI_ MARIAN THE LIBRARIAN
     ***  can book titles only be in english?? 
 5. Asks the user to select a book title to view more info about 
     user input must be valid: a number greater than 0 and less than the length of the title list
+6. Returns a list of book details including first year published, first sentence, and subject(s)
+7. Asks user if they'd like to view books by another author. 
+8. Loops forever
+9. Understands the 'exit' command. 
