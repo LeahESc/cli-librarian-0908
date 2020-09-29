@@ -13,3 +13,24 @@ CLI_ MARIAN THE LIBRARIAN
     ** do I need a method for f_name/l_name in cli?? Maybe. 
 8. Loops forever
 9. Understands the 'exit' command. 
+
+
+*** commented-out cli code 
+     # input = gets.strip.downcase.split(" ")
+        # binding.pry
+        # if input[0] == "exit"
+        #     exit
+        # else 
+            # @f_name = input[0]
+            # @l_name = input[1]
+            # API.get_books(@f_name, @l_name)
+            # puts ""
+            # binding.pry
+            # while Book.find_by_author(@f_name, @l_name).count == 0
+            # if Book.find_by_author(@f_name,@l_name).count == 0
+            #     prompt_one
+            # else
+            #     print_titles_by_author(@f_name, @l_name)
+            
+            #     puts ""
+            #     prompt_two
