@@ -16,21 +16,30 @@ CLI_ MARIAN THE LIBRARIAN
 
 
 *** commented-out cli code 
-     # input = gets.strip.downcase.split(" ")
-        # binding.pry
-        # if input[0] == "exit"
-        #     exit
-        # else 
-            # @f_name = input[0]
-            # @l_name = input[1]
-            # API.get_books(@f_name, @l_name)
-            # puts ""
-            # binding.pry
-            # while Book.find_by_author(@f_name, @l_name).count == 0
-            # if Book.find_by_author(@f_name,@l_name).count == 0
-            #     prompt_one
-            # else
-            #     print_titles_by_author(@f_name, @l_name)
-            
-            #     puts ""
-            #     prompt_two
+   def menu_loop
+        puts "To search for a list of books from an author, type the author's first and last name.To exit, type 'Goobye Marian'." 
+        puts ""
+        input = gets.strip.downcase.split(" ")
+        while input[0] != "exit"
+            input[0] = @f_name
+            input[1] = @l_name
+            API.get_books(@f_name, @l_name) 
+                if Book.find_by_author(@f_name, @l_name).count > 0
+                    # input[0] == f_name && input[1] == l_name
+                    print_titles_by_author(@f_name, @l_name)
+                    puts ""
+                    binding.pry
+                    book_selection
+                elsif Book.find_by_author(@f_name, @l_name).count == 0
+                    puts "I'm sorry, I couldn't understand that. Would you like to try again?"
+                    author_prompt
+                else
+                    puts "I'm sorry, I couldn't understand that. Would you like to try again?" 
+                    puts ""
+                end
+                book_prompt
+                author_prompt
+                input = gets.strip.downcase.split(" ")
+                API.get_books(@f_name, @l_name) 
+        end
+    end

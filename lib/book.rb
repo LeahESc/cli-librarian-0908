@@ -21,19 +21,4 @@ class Book
        self.all.select{|b| b.f_name == f_name && b.l_name == l_name}
     end
 
-
-   
-    
-
-
-    # def self.find_by_title(title)
-    #     title_list = self.all.select{|b| b.title == title}
-        
-
-    # def self.find_or_create_by(title)
-    #     n = self.title = title
-    #     if !n 
-    #         self.new
-
-    
 end 
