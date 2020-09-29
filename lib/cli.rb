@@ -1,36 +1,12 @@
 class CLI 
 
     def run
-        # binding.pry
-        # binding.pry
         puts ""
         puts "Hello, I'm Marian the Librarian! Welcome to my library!"
         puts ""
         puts "----------------------------------" 
         menu_loop
-        # book illustration
-        # puts "To search for a list of books from an author, type the author's first and last name.To exit, type 'exit'." 
-        # puts ""
-        # get_input
-        # while @input[0] != "exit"
-            # set_input_to_name
-            # if Book.find_by_author(@f_name, @l_name).count > 0
-            #     print_titles_by_author(@f_name, @l_name)
-            #     puts ""
-            #     book_prompt
-            #     book_selection
-                
-            # elsif Book.find_by_author(@f_name, @l_name).count == 0
-            #     puts "I'm sorry, I couldn't understand that. Would you like to try again?"
-            #     author_prompt
-            # else
-            #     puts "I'm sorry, I couldn't understand that. Would you like to try again?" 
-            #     puts ""
-            # end
-            # author_prompt
-            # input = gets.strip.downcase.split(" ")
-            # API.get_books(@f_name, @l_name)     
-        # end 
+        goodbye
     end
 
     def menu_loop
@@ -39,7 +15,7 @@ class CLI
         @f_name = input[0]
         @l_name = input[1]
         API.get_books(@f_name, @l_name)
-        while input[0] != "exit"
+        while @f_name != "exit"
             if Book.find_by_author(@f_name, @l_name).count > 0
                 print_titles_by_author(@f_name, @l_name)
                 puts ""
@@ -50,9 +26,8 @@ class CLI
                 puts ""
             end
             puts "Would you like to search for books by a different author?"
-            menu_loop 
+            menu_loop
         end
-        goodbye
     end
 
     def book_prompt
@@ -62,7 +37,7 @@ class CLI
 
     def author_prompt
         puts ""
-        puts "To search by author, type an author's first and last name. To exit, type 'exit'" 
+        puts "To search by author, type an author's first and last name. To exit the library, type 'exit'" 
         puts ""
     end
 
@@ -76,7 +51,7 @@ class CLI
     def book_selection
         input = gets.strip.downcase
         if input.to_i > 0 && input.to_i <= Book.find_by_author(@f_name, @l_name).count
-            book = Book.find_by_author(@f_name, @l_name)[input[0].to_i - 1]
+            book = Book.find_by_author(@f_name, @l_name)[input.to_i - 1]
             print_book_details(book)
             puts ""
         else
@@ -87,14 +62,10 @@ class CLI
 
     def list 
         input = gets.strip.downcase.split(" ")
-        while input[0] != "menu"
-            if @input[0] == "list"
+        binding.pry
+        if input == "list"
             print_titles_by_author(@f_name, @l_name)
-            else
-            puts "I'm sorry, I couldn't understand that. Would you like to try again?"
-            end
         end
-        menu_loop
     end
 
     def print_book_details(book)
