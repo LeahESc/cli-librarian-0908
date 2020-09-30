@@ -35,7 +35,7 @@ class CLI
 
     def author_prompt
         puts ""
-        puts "To search by author, type an author's first and last name. To exit the library, type 'exit'".green
+        puts "To search by author, type an author's first and last name. To exit the library, type 'exit'".green.bold 
         puts ""
     end
 
@@ -88,13 +88,13 @@ class CLI
     end
 
     def print_book_details(book)
-        puts "Title:".green +  " #{book.title}"
+        puts "Title:".green.bold +  " #{book.title}"
         puts ""
-        puts "First year published:".green + " #{book.publish_date}"
+        puts "First year published:".green.bold + " #{book.publish_date}"
         puts ""
-        puts "First sentence:".green + " #{book.first_sentence.join(" ")}" if book.first_sentence != nil
+        puts "First sentence:".green.bold + " #{book.first_sentence.join(" ")}" if book.first_sentence != nil
         puts ""
-        puts "Subject(s):".green + " #{book.subject.join("\n")}" if book.subject != nil
+        puts "Subject(s):".green.bold + " #{book.subject.join("\n")}" if book.subject != nil
     end
 
     def invalid
@@ -108,7 +108,7 @@ class CLI
 
     def hello_library
         puts "" 
-        puts "               Hello, I'm Marian the Librarian! Welcome to my library!".green 
+        puts "               Hello, I'm Marian the Librarian! Welcome to my library!".green.bold  
         puts "    (,         ,(,   .  .*(/*. .. .. ,(,         ,(,   ..  .*/(*                    
         *****/ .                         .##( .                      .   (*****    
         ///*/(                             (.                            /((//(    
