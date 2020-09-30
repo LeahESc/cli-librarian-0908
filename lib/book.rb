@@ -1,4 +1,3 @@
-require 'pry'
 class Book
     attr_accessor :title, :l_name, :f_name, :first_sentence, :publish_date, :subject
     @@all = [] 
