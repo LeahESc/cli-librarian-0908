@@ -50,8 +50,7 @@ class CLI
     def print_titles_by_author(f_name, l_name)
         titles = Book.find_by_author(@f_name, @l_name)
         titles.each.with_index(1) do |t,i|
-            puts "#{i}. #{t.title.gsub(/\w+/){|word| word.capitalize}}
-                                                                    "
+            puts "#{i}. #{t.title.gsub(/\w+/){|word| word.capitalize}}"
         end
     end
 
