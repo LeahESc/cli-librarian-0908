@@ -1,5 +1,3 @@
-require 'pry'
-
 class API 
 
     def self.get_books(f_name,l_name)
