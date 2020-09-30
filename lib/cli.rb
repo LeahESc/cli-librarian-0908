@@ -2,9 +2,9 @@ class CLI
 
     def run
         puts ""
-        puts "Hello, I'm Marian the Librarian! Welcome to my library!"
+        puts "      Hello, I'm Marian the Librarian! Welcome to my library!"
         puts ""
-        puts "----------------------------------" 
+        library_art
         menu_loop
         goodbye
     end
@@ -24,6 +24,7 @@ class CLI
                 book_prompt
                 @book_input = gets.strip.downcase
                 book_selection
+                puts "Would you like to search for another author?"
             else
                 invalid
             end
@@ -52,7 +53,6 @@ class CLI
     def book_selection
         if  @book_input.to_i > 0 && @book_input.to_i <= Book.find_by_author(@f_name, @l_name).count
             book = Book.find_by_author(@f_name, @l_name)[@book_input.to_i - 1]
-            # binding.pry 
             print_book_details(book)
             puts ""
         else
@@ -72,6 +72,9 @@ class CLI
         @book_input = gets.strip.downcase
         while @book_input != "menu"
             book_selection
+            book_prompt
+            puts "If you'd like to go back to the main menu, type 'menu'"
+            @book_input = gets.strip.downcase 
         end
     end
 
@@ -89,5 +92,29 @@ class CLI
 
     def goodbye
         puts "Goodbye! Thanks for stopping by!"
+    end
+
+    def library_art
+        puts "                    .*(/*. .. .. ,(,         ,(,   ..  .*/(*                    
+        *****/ .                         .##( .                      .   (*****    
+        ///*/(                             (.                            /((//(    
+        ///((/.                            (                             ,((//(    
+        ///((*        Welcome              (                            .,/(//(    
+        ///(/,         to my               (                            .,*///(    
+        ///(/,.       library!             (                             ,*///(    
+        ////*,                             (                            .,,///(    
+        ////*,      Let's find a           (                             ,,///(    
+        ////*,         book!               (                             ,,///(    
+        ////*,.                            (                             ,,///(    
+        ////*,.                            (                             ,,///(    
+        ////*,.                            (                             ,,///(    
+        ////*,                             (                             ,,///(    
+        /////,.                            (                             ,*///(    
+        /////*                             (                             ,*///(    
+        ///((/.             ..  ..      .  (                             ,////(    
+        ///(((                             ( .                           *((//(    
+        ///(/(      .../(*,,((/,**/((//((  (  ((/(((/*,*/(/,,/(*. .      (((//(    
+        ////,,,/(/*,((//(#(/(##/////////#/#(((//////////##(/(#(*/(/,*((*,,/(//(    
+        ////////////////////////////////#(((((////////////////////////////////("
     end
 end 
