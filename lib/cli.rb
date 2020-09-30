@@ -109,7 +109,8 @@ class CLI
 
     def hello_library
         puts "" 
-        puts "               Hello, I'm Marian the Librarian! Welcome to my library!".green.bold  
+        puts "               Hello, I'm Marian the Librarian! Welcome to my library!".green.bold 
+        puts "" 
         puts "    (,         ,(,   .  .*(/*. .. .. ,(,         ,(,   ..  .*/(*                    
         *****/ .                         .##( .                      .   (*****    
         ///*/(                             (.                            /((//(    
