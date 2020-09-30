@@ -47,6 +47,10 @@ class CLI
         puts "If you'd like to go back to the main menu, type 'menu'".green.bold 
     end
 
+    def book_input
+        @book_input = gets.strip.downcase
+    end
+
     def print_titles_by_author(f_name, l_name)
         titles = Book.find_by_author(@f_name, @l_name)
         titles.each.with_index(1) do |t,i|
@@ -64,10 +68,6 @@ class CLI
             list   
         end  
     end 
-
-    def book_input
-        @book_input = gets.strip.downcase
-    end
 
     def list 
         input = gets.strip.downcase
