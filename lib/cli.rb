@@ -70,11 +70,7 @@ class CLI
             book_prompt
             puts "If you'd like to go back to the main menu, type 'menu'".green.bold  
         end
-        more_books
-    end
-       
-    def more_books
-    @book_input = gets.strip.downcase
+        @book_input = gets.strip.downcase
         while @book_input != "menu"
             if @book_input.to_i > 0 
                 book_selection
