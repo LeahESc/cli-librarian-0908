@@ -1,10 +1,7 @@
 class CLI 
 
     def run
-        puts ""
-        puts "             Hello, I'm Marian the Librarian! Welcome to my library!".green 
-        puts ""
-        library_art
+        hello_library
         menu_loop
         goodbye
     end
@@ -20,11 +17,10 @@ class CLI
                 invalid
             elsif Book.find_by_author(@f_name, @l_name).count > 0
                 print_titles_by_author(@f_name, @l_name)
-                puts ""
                 book_prompt
                 @book_input = gets.strip.downcase
                 book_selection
-                puts "Would you like to search for another author?".green
+                author_2_prompt
             else
                 invalid
             end
@@ -43,10 +39,15 @@ class CLI
         puts ""
     end
 
+    def author_2_prompt
+        puts "Would you like to search for another author?".green
+    end
+
     def print_titles_by_author(f_name, l_name)
         titles = Book.find_by_author(@f_name, @l_name)
         titles.each.with_index(1) do |t,i|
-            puts "#{i}. #{t.title.gsub(/\w+/){|word| word.capitalize}}"
+            puts "#{i}. #{t.title.gsub(/\w+/){|word| word.capitalize}}
+                                                                    "
         end
     end
 
@@ -98,7 +99,9 @@ class CLI
         puts "Goodbye! Thanks for stopping by!".green
     end
 
-    def library_art
+    def hello_library
+        puts "" 
+        puts "               Hello, I'm Marian the Librarian! Welcome to my library!".green 
         puts "    (,         ,(,   .  .*(/*. .. .. ,(,         ,(,   ..  .*/(*                    
         *****/ .                         .##( .                      .   (*****    
         ///*/(                             (.                            /((//(    
