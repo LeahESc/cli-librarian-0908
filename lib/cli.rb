@@ -29,7 +29,7 @@ class CLI
     end
 
     def book_prompt
-        puts "To learn more about a book, type the number listed next to a title".green
+        puts "To learn more about a book, type the number listed next to a title".green.bold
         puts ""
     end
 
@@ -40,7 +40,7 @@ class CLI
     end
 
     def author_2_prompt
-        puts "Would you like to search for another author?".green
+        puts "Would you like to search for another author?".green.bold
     end
 
     def print_titles_by_author(f_name, l_name)
@@ -57,7 +57,7 @@ class CLI
             print_book_details(book)
             puts ""
         else
-            puts "I'm sorry, I couldn't understand that. To see the list of book titles again type 'list'. To go back to the main menu, type 'menu'.".green
+            puts "I'm sorry, I couldn't understand that. To see the list of book titles again type 'list'. To go back to the main menu, type 'menu'.".green.bold
             list   
         end  
     end 
@@ -68,7 +68,7 @@ class CLI
             print_titles_by_author(@f_name, @l_name)
             puts ""
             book_prompt
-            puts "If you'd like to go back to the main menu, type 'menu'".green  
+            puts "If you'd like to go back to the main menu, type 'menu'".green.bold  
         end
         more_books
     end
@@ -79,10 +79,10 @@ class CLI
             if @book_input.to_i > 0 
                 book_selection
                 book_prompt
-                puts "If you'd like to go back to the main menu, type 'menu'".green
+                puts "If you'd like to go back to the main menu, type 'menu'".green.bold
                 @book_input = gets.strip.downcase 
             else 
-                puts "Hm, I didn't understand that. Let's go back to the main menu".green
+                puts "Hm, I didn't understand that. Let's go back to the main menu".green.bold
             end
         end
     end
@@ -98,12 +98,12 @@ class CLI
     end
 
     def invalid
-        puts "I'm sorry, I couldn't understand that. Would you like to try again?".green
+        puts "I'm sorry, I couldn't understand that. Would you like to try again?".green.bold
         puts ""
     end
 
     def goodbye
-        puts "Goodbye! Thanks for stopping by!".green
+        puts "Goodbye! Thanks for stopping by!".green.bold
         puts ""
     end
 
