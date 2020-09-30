@@ -2,7 +2,7 @@ class CLI
 
     def run
         puts ""
-        puts "      Hello, I'm Marian the Librarian! Welcome to my library!"
+        puts "             Hello, I'm Marian the Librarian! Welcome to my library!".green 
         puts ""
         library_art
         menu_loop
@@ -24,7 +24,7 @@ class CLI
                 book_prompt
                 @book_input = gets.strip.downcase
                 book_selection
-                puts "Would you like to search for another author?"
+                puts "Would you like to search for another author?".green
             else
                 invalid
             end
@@ -33,13 +33,13 @@ class CLI
     end
 
     def book_prompt
-        puts "To learn more about a book, type the number listed next to a title"
+        puts "To learn more about a book, type the number listed next to a title".green
         puts ""
     end
 
     def author_prompt
         puts ""
-        puts "To search by author, type an author's first and last name. To exit the library, type 'exit'" 
+        puts "To search by author, type an author's first and last name. To exit the library, type 'exit'".green
         puts ""
     end
 
@@ -56,7 +56,7 @@ class CLI
             print_book_details(book)
             puts ""
         else
-            puts "I'm sorry, I couldn't understand that. To see the list of book titles again type 'list'. To go back to the main menu, type 'menu'."
+            puts "I'm sorry, I couldn't understand that. To see the list of book titles again type 'list'. To go back to the main menu, type 'menu'.".green
             list   
         end  
     end 
@@ -67,35 +67,39 @@ class CLI
             print_titles_by_author(@f_name, @l_name)
             puts ""
             book_prompt
-            puts "If you'd like to go back to the main menu, type 'menu'"  
+            puts "If you'd like to go back to the main menu, type 'menu'".green  
         end
         @book_input = gets.strip.downcase
         while @book_input != "menu"
-            book_selection
-            book_prompt
-            puts "If you'd like to go back to the main menu, type 'menu'"
-            @book_input = gets.strip.downcase 
+            if @book_input.to_i > 0 
+                book_selection
+                book_prompt
+                puts "If you'd like to go back to the main menu, type 'menu'".green
+                @book_input = gets.strip.downcase 
+            else 
+                puts "Hm, I didn't understand that. Let's go back to the main menu".green
+            end
         end
     end
 
     def print_book_details(book)
-        puts "Title: #{book.title}"
-        puts "First year published: #{book.publish_date}"
-        puts "First sentence: #{book.first_sentence.join(" ")}" if book.first_sentence != nil
-        puts "Subject(s): #{book.subject.join("\n")}" if book.subject != nil
+        puts "Title:".green +  " #{book.title}"
+        puts "First year published:".green + " #{book.publish_date}"
+        puts "First sentence:".green + " #{book.first_sentence.join(" ")}" if book.first_sentence != nil
+        puts "Subject(s):".green + " #{book.subject.join("\n")}" if book.subject != nil
     end
 
     def invalid
-        puts "I'm sorry, I couldn't understand that. Would you like to try again?" 
+        puts "I'm sorry, I couldn't understand that. Would you like to try again?".green
         puts ""
     end
 
     def goodbye
-        puts "Goodbye! Thanks for stopping by!"
+        puts "Goodbye! Thanks for stopping by!".green
     end
 
     def library_art
-        puts "                    .*(/*. .. .. ,(,         ,(,   ..  .*/(*                    
+        puts "    (,         ,(,   .  .*(/*. .. .. ,(,         ,(,   ..  .*/(*                    
         *****/ .                         .##( .                      .   (*****    
         ///*/(                             (.                            /((//(    
         ///((/.                            (                             ,((//(    
@@ -111,7 +115,7 @@ class CLI
         ////*,                             (                             ,,///(    
         /////,.                            (                             ,*///(    
         /////*                             (                             ,*///(    
-        ///((/.             ..  ..      .  (                             ,////(    
+        ///((/.                         .  (                             ,////(    
         ///(((                             ( .                           *((//(    
         ///(/(      .../(*,,((/,**/((//((  (  ((/(((/*,*/(/,,/(*. .      (((//(    
         ////,,,/(/*,((//(#(/(##/////////#/#(((//////////##(/(#(*/(/,*((*,,/(//(    
