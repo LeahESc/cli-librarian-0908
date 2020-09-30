@@ -13,7 +13,7 @@ class CLI
         @l_name = input[1]
         API.get_books(@f_name, @l_name)
         while @f_name != "exit"
-            if @l_name == nil
+            if !@l_name 
                 invalid
             elsif Book.find_by_author(@f_name, @l_name).count > 0
                 print_titles_by_author(@f_name, @l_name)
@@ -70,7 +70,11 @@ class CLI
             book_prompt
             puts "If you'd like to go back to the main menu, type 'menu'".green  
         end
-        @book_input = gets.strip.downcase
+        more_books
+    end
+       
+    def more_books
+    @book_input = gets.strip.downcase
         while @book_input != "menu"
             if @book_input.to_i > 0 
                 book_selection
@@ -85,8 +89,11 @@ class CLI
 
     def print_book_details(book)
         puts "Title:".green +  " #{book.title}"
+        puts ""
         puts "First year published:".green + " #{book.publish_date}"
+        puts ""
         puts "First sentence:".green + " #{book.first_sentence.join(" ")}" if book.first_sentence != nil
+        puts ""
         puts "Subject(s):".green + " #{book.subject.join("\n")}" if book.subject != nil
     end
 
