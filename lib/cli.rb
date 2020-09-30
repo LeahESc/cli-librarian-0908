@@ -1,12 +1,12 @@
 class CLI 
 
     def run
-        hello_library
-        menu_loop
+        hello
+        menu
         goodbye
     end
 
-    def menu_loop
+    def menu
         author_prompt
         input = gets.strip.downcase.split(" ")
         @f_name = input[0]
@@ -24,7 +24,7 @@ class CLI
             else
                 invalid
             end
-            menu_loop
+            menu
         end
     end
 
@@ -41,6 +41,10 @@ class CLI
 
     def author_2_prompt
         puts "Would you like to search for another author?".green.bold
+    end
+
+    def menu_prompt
+        puts "If you'd like to go back to the main menu, type 'menu'".green.bold 
     end
 
     def print_titles_by_author(f_name, l_name)
@@ -62,21 +66,24 @@ class CLI
         end  
     end 
 
+    def book_input
+        @book_input = gets.strip.downcase
+    end
+
     def list 
         input = gets.strip.downcase
         if input == "list"
             print_titles_by_author(@f_name, @l_name)
-            puts ""
             book_prompt
-            puts "If you'd like to go back to the main menu, type 'menu'".green.bold  
+            menu_prompt 
         end
-        @book_input = gets.strip.downcase
+        book_input
         while @book_input != "menu"
             if @book_input.to_i > 0 
                 book_selection
                 book_prompt
-                puts "If you'd like to go back to the main menu, type 'menu'".green.bold
-                @book_input = gets.strip.downcase 
+                menu_prompt
+                book_input
             else 
                 puts "Hm, I didn't understand that. Let's go back to the main menu".green.bold
             end
@@ -84,6 +91,7 @@ class CLI
     end
 
     def print_book_details(book)
+        puts ""
         puts "Title:".green.bold +  " #{book.title}"
         puts "First year published:".green.bold + " #{book.publish_date}"
         puts "First sentence:".green.bold + " #{book.first_sentence.join(" ")}" if book.first_sentence != nil
@@ -100,7 +108,7 @@ class CLI
         puts ""
     end
 
-    def hello_library
+    def hello
         puts "" 
         puts "               Hello, I'm Marian the Librarian! Welcome to my library!".green.bold 
         puts "" 
