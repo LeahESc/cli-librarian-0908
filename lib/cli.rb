@@ -18,7 +18,7 @@ class CLI
             elsif Book.find_by_author(@f_name, @l_name).count > 0
                 print_titles_by_author(@f_name, @l_name)
                 book_prompt
-                @book_input = gets.strip.downcase
+                book_input
                 book_selection
                 author_2_prompt
             else
