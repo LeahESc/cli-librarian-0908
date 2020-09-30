@@ -89,11 +89,8 @@ class CLI
 
     def print_book_details(book)
         puts "Title:".green.bold +  " #{book.title}"
-        puts ""
         puts "First year published:".green.bold + " #{book.publish_date}"
-        puts ""
         puts "First sentence:".green.bold + " #{book.first_sentence.join(" ")}" if book.first_sentence != nil
-        puts ""
         puts "Subject(s):".green.bold + " #{book.subject.join("\n")}" if book.subject != nil
     end
 
