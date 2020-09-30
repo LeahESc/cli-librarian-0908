@@ -11,35 +11,13 @@ CLI_ MARIAN THE LIBRARIAN
 6. Returns a list of book details including first year published, first sentence, and subject(s)
 7. Asks user if they'd like to view books by another author. 
     ** do I need a method for f_name/l_name in cli?? Maybe. 
-8. Loops forever
+8. Loops until exit
 9. Understands the 'exit' command. 
 
+TODO: 
+GET OUT OF ENDLESS 'LIST / BOOK_SELECTION' Loops
+make this nice looking with color and pictures 
+write a README
+write a blog 
+record video demo of project. 
 
-*** commented-out cli code 
-   def menu_loop
-        puts "To search for a list of books from an author, type the author's first and last name.To exit, type 'Goobye Marian'." 
-        puts ""
-        input = gets.strip.downcase.split(" ")
-        while input[0] != "exit"
-            input[0] = @f_name
-            input[1] = @l_name
-            API.get_books(@f_name, @l_name) 
-                if Book.find_by_author(@f_name, @l_name).count > 0
-                    # input[0] == f_name && input[1] == l_name
-                    print_titles_by_author(@f_name, @l_name)
-                    puts ""
-                    binding.pry
-                    book_selection
-                elsif Book.find_by_author(@f_name, @l_name).count == 0
-                    puts "I'm sorry, I couldn't understand that. Would you like to try again?"
-                    author_prompt
-                else
-                    puts "I'm sorry, I couldn't understand that. Would you like to try again?" 
-                    puts ""
-                end
-                book_prompt
-                author_prompt
-                input = gets.strip.downcase.split(" ")
-                API.get_books(@f_name, @l_name) 
-        end
-    end

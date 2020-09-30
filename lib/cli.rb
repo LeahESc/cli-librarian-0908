@@ -16,15 +16,16 @@ class CLI
         @l_name = input[1]
         API.get_books(@f_name, @l_name)
         while @f_name != "exit"
-            if Book.find_by_author(@f_name, @l_name).count > 0
+            if @l_name == nil
+                invalid
+            elsif Book.find_by_author(@f_name, @l_name).count > 0
                 print_titles_by_author(@f_name, @l_name)
                 puts ""
                 book_prompt
                 @book_input = gets.strip.downcase
                 book_selection
             else
-                puts "I'm sorry, I couldn't understand that. Would you like to try again?" 
-                puts ""
+                invalid
             end
             menu_loop
         end
@@ -49,7 +50,7 @@ class CLI
     end
 
     def book_selection
-        if @book_input.to_i > 0 && @book_input.to_i <= Book.find_by_author(@f_name, @l_name).count
+        if  @book_input.to_i > 0 && @book_input.to_i <= Book.find_by_author(@f_name, @l_name).count
             book = Book.find_by_author(@f_name, @l_name)[@book_input.to_i - 1]
             # binding.pry 
             print_book_details(book)
@@ -66,12 +67,11 @@ class CLI
             print_titles_by_author(@f_name, @l_name)
             puts ""
             book_prompt
-            puts "If you'd like to go back to the main menu, type 'menu'"
-            @book_input = gets.strip.downcase
-            # binding.pry
-            while @book_input != "menu"
-                book_selection
-            end
+            puts "If you'd like to go back to the main menu, type 'menu'"  
+        end
+        @book_input = gets.strip.downcase
+        while @book_input != "menu"
+            book_selection
         end
     end
 
@@ -80,6 +80,11 @@ class CLI
         puts "First year published: #{book.publish_date}"
         puts "First sentence: #{book.first_sentence.join(" ")}" if book.first_sentence != nil
         puts "Subject(s): #{book.subject.join("\n")}" if book.subject != nil
+    end
+
+    def invalid
+        puts "I'm sorry, I couldn't understand that. Would you like to try again?" 
+        puts ""
     end
 
     def goodbye
