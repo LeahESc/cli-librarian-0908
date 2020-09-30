@@ -104,6 +104,7 @@ class CLI
 
     def goodbye
         puts "Goodbye! Thanks for stopping by!".green
+        puts ""
     end
 
     def hello_library
